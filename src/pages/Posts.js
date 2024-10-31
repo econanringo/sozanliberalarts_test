@@ -36,18 +36,16 @@ const Posts = () => {
             content,
             date: new Date().toLocaleDateString(),
         };
-
-        // 既存の投稿を取得
-        const existingPosts = [...posts, newPost];
-
-        // JSONファイルに書き込む（ローカルでは書き込みできないので、デモ用の例）
-        await fetch('/data/data.json', {
-            method: 'PUT', // PUTメソッドを使ってデータを更新
+    
+        // APIエンドポイントにPOSTリクエストを送信
+        await fetch('/api/posts', {
+            method: 'PUT', // PUTメソッドで新しい投稿を送信
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(existingPosts),
+            body: JSON.stringify(newPost),
         });
-
+    
         alert('投稿が作成されました');
+        // その後、投稿を再取得するなどの処理を行う
         setPosts(existingPosts); // 投稿リストを更新
         setTitle(''); // フォームをクリア
         setContent('');

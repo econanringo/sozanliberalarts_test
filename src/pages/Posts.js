@@ -45,10 +45,6 @@ const Posts = () => {
         });
     
         alert('投稿が作成されました');
-        // その後、投稿を再取得するなどの処理を行う
-        setPosts(existingPosts); // 投稿リストを更新
-        setTitle(''); // フォームをクリア
-        setContent('');
     };
 
     return (

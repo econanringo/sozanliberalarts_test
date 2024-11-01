@@ -10,7 +10,7 @@ const Posts = () => {
     // JSONファイルから投稿データを取得
     const fetchPosts = async () => {
         try {
-            const response = await fetch('https://my-app-la2a.onrender.com/data/data.json');
+            const response = await fetch('/data/data.json');
             const data = await response.json();
             setPosts(data);
         } catch (error) {
@@ -23,7 +23,7 @@ const Posts = () => {
     }, []);
 
     const handlePasswordSubmit = () => {
-        if (password === 'your-password') {
+        if (password === '1111') {
             setIsAuthenticated(true);
         } else {
             alert('パスワードが違います');

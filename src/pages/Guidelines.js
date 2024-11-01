@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Guidelines = () => (
-    <><div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <><div class="mb-4 border-b border-gray-200 dark:border-gray-700 container mx-auto px-40">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
             <li class="me-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>

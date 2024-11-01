@@ -1,27 +1,38 @@
-// api/posts.js
 import fs from 'fs';
 import path from 'path';
 
-const dataFilePath = path.join(process.cwd(), 'public/data/data.json');
-
 export default function handler(req, res) {
-    if (req.method === 'GET') {
-        // JSONファイルの内容を返す
-        const jsonData = fs.readFileSync(dataFilePath);
-        res.status(200).json(JSON.parse(jsonData));
-    } else if (req.method === 'PUT') {
-        // リクエストボディから新しいデータを取得
-        const newPost = req.body;
+  const filePath = path.join(process.cwd(), 'data', 'data.json');
 
-        // 既存のデータを読み込む
-        const existingData = JSON.parse(fs.readFileSync(dataFilePath));
-        existingData.push(newPost);
-
-        // 新しいデータをJSONファイルに書き込む
-        fs.writeFileSync(dataFilePath, JSON.stringify(existingData, null, 2));
-        res.status(200).json(newPost);
-    } else {
-        res.setHeader('Allow', ['GET', 'PUT']);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
+  if (req.method === 'GET') {
+    try {
+      const data = fs.readFileSync(filePath, 'utf8');
+      res.status(200).json(JSON.parse(data));
+    } catch (err) {
+      console.error('File read error:', err);
+      res.status(500).json({ error: 'ファイルの読み込みに失敗しました' });
     }
+  } else if (req.method === 'PUT') {
+    try {
+      const { title, content } = req.body;
+      const date = new Date().toISOString().split('T')[0]; // 現在の日付を設定
+      const newPost = { title, content, date };
+
+      // 現在のファイル内容を取得して更新
+      const fileData = fs.readFileSync(filePath, 'utf8');
+      const jsonData = JSON.parse(fileData);
+      jsonData.push(newPost);
+
+      // 更新後の内容を保存
+      fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
+
+      res.status(200).json({ message: 'データが正常に更新されました' });
+    } catch (err) {
+      console.error('File write error:', err);
+      res.status(500).json({ error: 'ファイルの書き込みに失敗しました' });
+    }
+  } else {
+    res.setHeader('Allow', ['GET', 'PUT']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
 }

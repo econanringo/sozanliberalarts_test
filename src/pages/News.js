@@ -6,7 +6,7 @@ const News = () => {
     // JSONファイルからニュースデータを取得
     const fetchNews = async () => {
         try {
-            const response = await fetch('https://slaentryform.vercel.app/data/data.json');
+            const response = await fetch('https://my-app-la2a.onrender.com/data/data.json');
             const data = await response.json();
             setNews(data);
         } catch (error) {

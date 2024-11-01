@@ -10,7 +10,7 @@ const Posts = () => {
     // JSONファイルから投稿データを取得
     const fetchPosts = async () => {
         try {
-            const response = await fetch('/data/data.json');
+            const response = await fetch('https://slaentryform.vercel.app/data/data.json');
             const data = await response.json();
             setPosts(data);
         } catch (error) {

@@ -20,7 +20,7 @@ const News = () => {
 
     return (
         <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">お知らせ</h2>
+            <h1 className="text-2xl font-bold mb-4">お知らせ</h1>
             <ul>
                 {news.map((item, index) => (
                     <li key={index} className="border p-2 mb-2">

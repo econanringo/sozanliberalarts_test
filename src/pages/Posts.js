@@ -64,7 +64,7 @@ const Posts = () => {
                 </div>
             ) : (
                 <div>
-                    <h2 className="text-2xl font-bold mb-4">新しい投稿を作成</h2>
+                    <h1 className="text-2xl font-bold mb-4">新しい投稿を作成</h1>
                     <input
                         type="text"
                         placeholder="タイトル"

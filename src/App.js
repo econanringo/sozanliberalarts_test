@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Entry from './pages/Entry';
 import Guidelines from './pages/Guidelines';
 import News from './pages/News';
-import Posts from './pages/Posts';
+import NewsDetail from './pages/NewsDetail';
 import 'flowbite';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
             <Route path="/entry" element={<Entry />} />
             <Route path="/guidelines" element={<Guidelines />} />
             <Route path="/news" element={<News />} />
-            <Route path="/posts" element={<Posts />} />
+            <Route path="/news/:id" element={<NewsDetail />} />
           </Routes>
         </main>
         <Footer />

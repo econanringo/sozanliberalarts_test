@@ -1,37 +1,73 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const News = () => {
-    const [news, setNews] = useState([]);
+  const [newsList, setNewsList] = useState([]);
+  const [loading, setLoading] = useState(true);   // ローディング状態のフラグ
+  const [error, setError] = useState(null);       // エラーメッセージの状態
 
-    // JSONファイルからニュースデータを取得
-    const fetchNews = async () => {
-        try {
-            const response = await fetch('/data/data.json');
-            const data = await response.json();
-            setNews(data);
-        } catch (error) {
-            console.error('Error fetching news:', error);
-        }
-    };
+  // 日付をyyyy/mm/dd形式に変換する関数
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2); // 月は0から始まるので+1
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${year}/${month}/${day}`;
+  };
 
-    useEffect(() => {
-        fetchNews();
-    }, []);
+  useEffect(() => {
+    // APIからお知らせの一覧を取得
+    axios.get(process.env.REACT_APP_API_URL, {
+      headers: {
+        'X-API-KEY': process.env.REACT_APP_API_KEY // ご自身のAPIキーを設定
+      }
+    })
+    .then(response => {
+      setNewsList(response.data.contents); // microCMSから取得したデータをstateに格納
+      setLoading(false)
+    })
+    .catch(error => {
+      console.error('Error fetching news:', error);
+      setLoading(false)
+    });
+  }, []);
 
-    return (
-        <div className="mb-4 border-b border-gray-200 dark:border-gray-700 max-w-screen-xl mx-auto px-4">
-            <h1 className="text-2xl font-bold mb-4">お知らせ</h1>
-            <ul>
-                {news.map((item, index) => (
-                    <li key={index} className="border p-2 mb-2">
-                        <h3 className="font-bold">{item.title}</h3>
-                        <p>{item.content}</p>
-                        <small>{item.date}</small>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+  if (loading) {
+    return <div className="text-center">読み込み中...</div>; // ローディング表示
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500">エラーが出ました。SLAの誰かに尋ねてください{error}</div>; // エラーメッセージ表示
+  }
+
+  return (
+    <div className="mb-4 max-w-screen-xl mx-auto px-4">
+      <h1 className="text-3xl font-bold text-center mb-6">お知らせ一覧</h1>
+
+      {/* お知らせのカード一覧表示 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {newsList.map(news => (
+          <div key={news.id} className="bg-white rounded-lg shadow-md overflow-hidden relative">
+            <div className="p-4">
+              <h2 className="text-xl font-semibold text-gray-800">{news.title}</h2>
+              <Link
+                to={`/news/${news.id}`}
+                className="mt-4 text-indigo-600 hover:text-indigo-800"
+              >
+                続きを読む
+              </Link>
+            </div>
+
+            {/* 投稿日付表示 */}
+            <div className="absolute bottom-4 right-4 text-sm text-gray-500">
+              {formatDate(news.createdAt)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default News;

@@ -7,6 +7,7 @@ import Entry from './pages/Entry';
 import Guidelines from './pages/Guidelines';
 import News from './pages/News';
 import Posts from './pages/Posts';
+import 'flowbite';
 
 function App() {
   return (

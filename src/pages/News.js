@@ -19,7 +19,7 @@ const News = () => {
     }, []);
 
     return (
-        <div className="p-4">
+        <div className="mb-4 border-b border-gray-200 dark:border-gray-700 max-w-screen-xl mx-auto px-4">
             <h1 className="text-2xl font-bold mb-4">お知らせ</h1>
             <ul>
                 {news.map((item, index) => (

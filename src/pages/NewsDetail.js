@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Helmet } from "react-helmet-async"; // <- インポートする
 
 const NewsDetail = () => {
   const { id } = useParams(); // URLパラメータからIDを取得
@@ -28,6 +29,10 @@ const NewsDetail = () => {
     }
 
     return (
+        <>
+        <Helmet>
+            <title>ニュース | Sozan Liberal Arts</title>
+        </Helmet>
         <div className="mb-4 max-w-screen-xl mx-auto px-4">
             <div className="container mx-auto px-4 py-8">
             {/* タイトル */}
@@ -40,6 +45,7 @@ const NewsDetail = () => {
             </a>
             </div>
         </div>
+        </>
       );
 };
 

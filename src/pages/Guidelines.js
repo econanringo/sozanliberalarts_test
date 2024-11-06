@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import 'flowbite';  // Flowbite をインポート
+import { Helmet } from "react-helmet-async"; // <- インポートする
 
 const Guidelines = () => {
   useEffect(() => {
@@ -19,6 +20,9 @@ const Guidelines = () => {
 
   return (
     <>
+      <Helmet>
+        <title>注意事項 | Sozan Liberal Arts</title>
+      </Helmet>
       <div className="mb-4 border-b border-gray-200 dark:border-gray-700 max-w-screen-xl mx-auto px-4">
         <h1 className="text-2xl font-bold mb-4">注意事項</h1>
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">

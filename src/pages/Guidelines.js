@@ -25,6 +25,8 @@ const Guidelines = () => {
       </Helmet>
       <div className="mb-4 border-b border-gray-200 dark:border-gray-700 max-w-screen-xl mx-auto px-4">
         <h1 className="text-2xl font-bold mb-4">注意事項</h1>
+        <p>1. スライドについて</p>
+        <p>スライドについて、以下の注意事項を読んで、正確に共有してください。</p>
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
           <li className="me-2" role="presentation">
             <button className="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Googleスライドの場合</button>
@@ -63,7 +65,15 @@ const Guidelines = () => {
         <div className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
           <p>申し訳ありませんが、運営に声をかけてください。</p>
         </div>
+        <p>2. 発表形式について</p>
+        <ol>
+          <li>・発表はスライド発表・ポスター発表のいずれでも構いません</li>
+          <li>・発表は、<span className="text-red-600 font-bold">5分以内</span>に収めてください</li>
+          <li>・第三者の著作物の使用は控えてください。</li>
+        </ol><br />
+        <p>注意事項を読んでわからないことは、運営まで声をかけてください。</p>
       </div>
+
     </>
   );
 };

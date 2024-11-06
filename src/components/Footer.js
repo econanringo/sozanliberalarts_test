@@ -9,6 +9,8 @@ const Footer = () => (
                         <img src="logo.png" className="h-8 me-3" alt="FlowBite Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sozan Liberal Arts</span>
                     </a>
+                    　〒703-8573 岡山県岡山市中区浜412<br />
+                    　TEL : 086-272-9836　/　FAX : 086-272-9836
                 </div>
                 <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                     {/* <div>

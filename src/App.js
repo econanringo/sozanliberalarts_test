@@ -14,7 +14,7 @@ import 'flowbite';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col mt-16">
         <Header />
         <main className="flex-grow">
           <Routes>

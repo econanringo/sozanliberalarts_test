@@ -7,8 +7,8 @@ import Entry from './pages/Entry';
 import Guidelines from './pages/Guidelines';
 import News from './pages/News';
 import NewsDetail from './pages/NewsDetail';
-import Events from './pages/events';
-import Example from './pages/Example';
+import Events from './pages/Events';
+import Error from './pages/404error';
 import 'flowbite';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
             <Route path="/news" element={<News />} />
             <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/events" element={<Events />} />
-            <Route path="*" element={<Example />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </main>
         <Footer />
